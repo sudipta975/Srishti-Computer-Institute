@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Srishti Computer Training Institute</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --crimson: #c0152a;
+      --navy: #0f1f45;
+      --gold: #e8a020;
+      --cream: #fdf8f2;
+      --white: #ffffff;
+      --card-bg: #ffffff;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 24px rgba(15,31,69,0.10);
+      --shadow-lg: 0 12px 40px rgba(15,31,69,0.16);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #1a3470 55%, #0f2a5e 100%);
+      padding: 0 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, rgba(192,21,42,0.25) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -60px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(232,160,32,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .logo-badge {
+      width: 44px; height: 44px;
+      background: var(--crimson);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900; color: #fff; font-size: 20px;
+      box-shadow: 0 4px 12px rgba(192,21,42,0.4);
+    }
+    .nav-brand { color: #fff; font-size: 14px; font-weight: 500; line-height: 1.3; }
+    .nav-brand span { display: block; font-size: 11px; color: rgba(255,255,255,0.5); font-weight: 300; }
+    
+    /* HERO BODY */
+    .hero-body {
+      text-align: center;
+      padding: 64px 24px 20px;
+      position: relative; z-index: 1;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(232,160,32,0.15);
+      border: 1px solid rgba(232,160,32,0.35);
+      color: var(--gold);
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 5px 16px; border-radius: 999px;
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+    .hero-title span { color: var(--gold); }
+    .hero-subtitle {
+      color: rgba(255,255,255,0.6);
+      font-size: 16px; font-weight: 300;
+      max-width: 480px; margin: 0 auto 40px;
+    }
+
+    /* STAT PILLS */
+    .stats-row {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 12px;
+      margin-top: 32px;
+    }
+    .stat-pill {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 14px 24px;
+      color: #fff; text-align: center;
+      min-width: 120px;
+      transition: transform 0.2s;
+    }
+    .stat-pill:hover { transform: translateY(-2px); }
+    .stat-pill .num { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--gold); }
+    .stat-pill .lbl { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 72px 24px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--crimson); margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700; color: var(--navy); margin-bottom: 8px;
+    }
+    .section-desc {
+      color: var(--muted); font-size: 15px; max-width: 520px; line-height: 1.6;
+    }
+    .divider {
+      width: 48px; height: 4px;
+      background: linear-gradient(90deg, var(--crimson), var(--gold));
+      border-radius: 99px; margin: 16px 0 40px;
+    }
+
+    /* ── BOARDS BANNER ── */
+    .boards-banner {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 28px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow);
+      display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+    }
+    .boards-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted); white-space: nowrap;
+    }
+    .boards-row { display: flex; flex-wrap: wrap; gap: 12px; }
+    .board-pill {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 16px;
+      font-size: 14px; font-weight: 700; color: var(--navy);
+    }
+
+    
+    .board-dot {
+      width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0;
+    }
+    .dot-green { background: #16a34a; }
+    .dot-blue  { background: #2563eb; }
+    .dot-orange{ background: #ea580c; }
+    .board-sub {
+      font-size: 11px; font-weight: 400; color: var(--muted);
+    }
+
+    /* ── FACULTY BIO ── */
+    .faculty-bio {
+      font-size: 13px; color: var(--muted); line-height: 1.65;
+      margin-bottom: 16px; text-align: left;
+    }
+    .faculty-bio strong { color: var(--navy); }
+
+    /* ── ADDRESS CARD ── */
+    .address-card {
+      display: inline-flex; align-items: center; gap: 16px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 16px;
+      padding: 18px 28px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+    .address-icon { flex-shrink: 0; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
+    .address-icon svg { width: 28px; height: 28px; }
+    .address-title { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+    .address-line { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+
+    /* ── COURSES ── */
+    .courses-bg { background: var(--cream); }
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 22px;
+    }
+    .course-card {
+      background: var(--white);
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .course-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--crimson), var(--gold));
+    }
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    .card-badge {
+      display: inline-block;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 12px; border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    .badge-nursery { background: #fce7f3; color: #831843; }
+    .badge-school { background: #fef3c7; color: #92400e; }
+    .badge-higher { background: #dbeafe; color: #1e3a8a; }
+    .badge-spoken { background: #dcfce7; color: #14532d; }
+    .badge-computer { background: #f3e8ff; color: #4a1d96; }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--navy); margin-bottom: 6px;
+    }
+    .card-range {
+      font-size: 12px; color: var(--muted); margin-bottom: 18px;
+    }
+    .subject-list {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px;
+    }
+    .subject-chip {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 5px 12px;
+      font-size: 13px; font-weight: 500; color: var(--navy);
+    }
+    .card-teacher {
+      display: flex; align-items: center; gap: 10px;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+    .teacher-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 14px; color: #fff;
+      flex-shrink: 0;
+    }
+    .av-red { background: var(--crimson); }
+    .av-green { background: #16a34a; }
+    .av-purple { background: #7c3aed; }
+    .teacher-info { line-height: 1.3; }
+    .teacher-name { font-size: 13px; font-weight: 600; color: var(--navy); }
+    .teacher-role { font-size: 11px; color: var(--muted); }
+
+    /* ── FACULTY ── */
+    .faculty-bg { background: #fff; }
+    .faculty-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 22px;
+    }
+    .faculty-card {
+      background: var(--cream);
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .faculty-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .faculty-avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 28px; font-weight: 700; color: #fff;
+      margin: 0 auto 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+    .fac-red { background: linear-gradient(135deg, var(--crimson), #e84560); }
+    .fac-green { background: linear-gradient(135deg, #16a34a, #22c55e); }
+    .fac-purple { background: linear-gradient(135deg, #7c3aed, #a855f7); }
+
+    .faculty-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 700; color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .faculty-title { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+    .faculty-subjects {
+      display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
+    }
+    .fac-chip {
+      padding: 4px 11px;
+      border-radius: 999px;
+      font-size: 11px; font-weight: 600;
+    }
+    .chip-red { background: #fee2e2; color: var(--crimson); }
+    .chip-green { background: #dcfce7; color: #15803d; }
+    .chip-purple { background: #f3e8ff; color: #7c3aed; }
+
+    /* ── CONTACT ── */
+    .contact-bg {
+      background: linear-gradient(135deg, var(--navy) 0%, #1a3470 100%);
+    }
+    .contact-inner {
+      max-width: 700px; margin: 0 auto; text-align: center;
+    }
+    .contact-inner .section-label { color: var(--gold); }
+    .contact-inner .section-title { color: #fff; }
+    .contact-inner .section-desc { color: rgba(255,255,255,0.55); max-width: 100%; }
+    .contact-inner .divider { margin: 16px auto 40px; }
+
+    .phone-cards {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 16px;
+      margin-top: 32px;
+    }
+    .phone-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 16px;
+      padding: 20px 32px;
+      display: flex; align-items: center; gap: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .phone-card:hover { background: rgba(255,255,255,0.13); transform: translateY(-2px); }
+    .phone-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: var(--crimson);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .phone-icon svg { width: 20px; height: 20px; fill: #fff; }
+    .phone-num { font-size: 18px; font-weight: 600; color: #fff; letter-spacing: 0.02em; }
+    .phone-sub { font-size: 11px; color: rgba(255,255,255,0.45); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #080f22;
+      padding: 24px;
+      text-align: center;
+      color: rgba(255,255,255,0.3);
+      font-size: 13px;
+    }
+    footer span { color: var(--gold); }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0; transform: translateY(24px);
+      animation: fadeUp 0.6s ease forwards;
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .hero-body { padding: 40px 16px 16px; }
+      .stats-row { gap: 8px; }
+      .stat-pill { min-width: 100px; padding: 10px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <nav>
+    <div class="nav-logo">
+      <div class="logo-badge">S</div>
+      <div class="nav-brand">
+        Srishti Computer Training Institute
+        <span>Excellence in Education</span>
+      </div>
+    </div>
+    
+  </nav>
+
+  <div class="hero-body">
+    <div class="hero-tag fade-in">Est. in Kolkata</div>
+    <h1 class="hero-title fade-in delay-1">
+      Srishti Computer<br/><span>Training Institute</span>
+    </h1>
+    <p class="hero-subtitle fade-in delay-2">
+      Quality coaching from KG to Class XII — across WBBSE, ICSE &amp; CBSE boards — along with Spoken English and Computer skills, all under one roof.
+    </p>
+
+    <div class="stats-row fade-in delay-3">
+      <div class="stat-pill">
+        <div class="num">KG–XII</div>
+        <div class="lbl">Classes Covered</div>
+      </div>
+      <div class="stat-pill">
+        <div class="num">4</div>
+        <div class="lbl">Core Subjects</div>
+      </div>
+      <div class="stat-pill">
+        <div class="num">3</div>
+        <div class="lbl">Expert Teachers</div>
+      </div>
+      <div class="stat-pill">
+        <div class="num">2</div>
+        <div class="lbl">Contact Numbers</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── COURSES ── -->
+<section class="courses-bg">
+  <div class="section-inner">
+    <div class="section-label">What We Offer</div>
+    <h2 class="section-title">Our Courses</h2>
+    <p class="section-desc">Structured programmes tailored to each grade level, taught by experienced and dedicated educators.</p>
+    <div class="divider"></div>
+
+    <!-- BOARDS BANNER -->
+    <div class="boards-banner">
+      <div class="boards-label">Boards We Cover</div>
+      <div class="boards-row">
+        <div class="board-pill">
+          <span class="board-dot dot-green"></span>
+          WBBSE
+          <span class="board-sub">West Bengal Board</span>
+        </div>
+        <div class="board-pill">
+          <span class="board-dot dot-blue"></span>
+          ICSE
+          <span class="board-sub">Council for Indian School Certificate</span>
+        </div>
+        <div class="board-pill">
+          <span class="board-dot dot-orange"></span>
+          CBSE
+          <span class="board-sub">Central Board of Secondary Education</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="courses-grid">
+
+      <!-- Card 0: KG1 to Class 6 -->
+      <div class="course-card">
+        <span class="card-badge badge-nursery">Foundation</span>
+        <h3 class="card-title">KG I – Class VI</h3>
+        <p class="card-range">All core subjects covered</p>
+        <div class="subject-list">
+          <span class="subject-chip">📖 English</span>
+          <span class="subject-chip">✍️ Bengali</span>
+          <span class="subject-chip">🔢 Mathematics - (Upto III)</span>
+          <span class="subject-chip">🌿 EVS / Science</span>
+          <span class="subject-chip">🌍 Social Studies</span>
+        </div>
+        <div class="card-teacher">
+          <div class="teacher-avatar av-red">S</div>
+          <div class="teacher-info">
+            <div class="teacher-name">Sharmila Ma'am</div>
+            <div class="teacher-role">Class Teacher – All Subjects</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 1 -->
+      <div class="course-card">
+        <span class="card-badge badge-school">School Level</span>
+        <h3 class="card-title">Class VIII – X</h3>
+        <p class="card-range">All core subjects covered</p>
+        <div class="subject-list">
+          <span class="subject-chip">📖 English</span>
+          <span class="subject-chip">✍️ Bengali</span>
+          <span class="subject-chip">🌍 Geography</span>
+          <span class="subject-chip">📜 History</span>
+        </div>
+        <div class="card-teacher">
+          <div class="teacher-avatar av-red">S</div>
+          <div class="teacher-info">
+            <div class="teacher-name">Sharmila Ma'am</div>
+            <div class="teacher-role">Class Teacher – All Subjects</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="course-card">
+        <span class="card-badge badge-higher">Higher Secondary</span>
+        <h3 class="card-title">Class XI – XII</h3>
+        <p class="card-range">Language subjects available</p>
+        <div class="subject-list">
+          <span class="subject-chip">📖 English</span>
+          <span class="subject-chip">✍️ Bengali</span>
+        </div>
+        <div class="card-teacher">
+          <div class="teacher-avatar av-red">S</div>
+          <div class="teacher-info">
+            <div class="teacher-name">Sharmila Ma'am</div>
+            <div class="teacher-role">Class Teacher – Languages</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="course-card">
+        <span class="card-badge badge-spoken">Communication</span>
+        <h3 class="card-title">Spoken English</h3>
+        <p class="card-range">All ages welcome</p>
+        <div class="subject-list">
+          <span class="subject-chip">🎙️ Conversation</span>
+          <span class="subject-chip">🗣️ Pronunciation</span>
+          <span class="subject-chip">📝 Grammar</span>
+        </div>
+        <div class="card-teacher">
+          <div class="teacher-avatar av-green">R</div>
+          <div class="teacher-info">
+            <div class="teacher-name">Rumela Ma'am</div>
+            <div class="teacher-role">Spoken English Faculty</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="course-card">
+        <span class="card-badge badge-computer">Technology</span>
+        <h3 class="card-title">Computer Course</h3>
+        <p class="card-range">Beginners to advanced</p>
+        <div class="subject-list">
+          <span class="subject-chip">💻 MS Office</span>
+          <span class="subject-chip">🌐 Internet</span>
+          <span class="subject-chip">⌨️ Typing</span>
+          <span class="subject-chip">🖥️ Basics</span>
+        </div>
+        <div class="card-teacher">
+          <div class="teacher-avatar av-purple">S</div>
+          <div class="teacher-info">
+            <div class="teacher-name">Sudipta Sir</div>
+            <div class="teacher-role">Computer Faculty</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FACULTY ── -->
+<section class="faculty-bg">
+  <div class="section-inner">
+    <div class="section-label">Meet the Team</div>
+    <h2 class="section-title">Our Faculty</h2>
+    <p class="section-desc">Passionate educators dedicated to nurturing every student's potential.</p>
+    <div class="divider"></div>
+
+    <div class="faculty-grid">
+
+      <div class="faculty-card">
+        <div class="faculty-avatar fac-red">S</div>
+        <div class="faculty-name">Sharmila Ma'am</div>
+        <div class="faculty-title">Academic Faculty · KG I – Class XII</div>
+        <div class="faculty-bio">With over <strong>20 years of dedicated teaching experience</strong>, Sharmila Ma'am is the academic backbone of Srishti. Her patient, student-first approach has helped hundreds of students build strong foundations across languages, science, and humanities.</div>
+        <div class="faculty-subjects">
+          <span class="fac-chip chip-red">English</span>
+          <span class="fac-chip chip-red">Bengali</span>
+          <span class="fac-chip chip-red">Geography</span>
+          <span class="fac-chip chip-red">History</span>
+          <span class="fac-chip chip-red">All Subjects (KG–VI)</span>
+        </div>
+      </div>
+
+      <div class="faculty-card">
+        <div class="faculty-avatar fac-green">R</div>
+        <div class="faculty-name">Rumela Ma'am</div>
+        <div class="faculty-title">Spoken English Faculty</div>
+        <div class="faculty-bio">Rumela Ma'am brings a rare fluency and natural command of the English language to every class. Her lessons go beyond textbook grammar — she makes English feel effortless, building real confidence in conversation and communication for students of all ages.</div>
+        <div class="faculty-subjects">
+          <span class="fac-chip chip-green">Spoken English</span>
+          <span class="fac-chip chip-green">Communication</span>
+        </div>
+      </div>
+
+      <div class="faculty-card">
+        <div class="faculty-avatar fac-purple">S</div>
+        <div class="faculty-name">Sudipta Sir</div>
+        <div class="faculty-title">Computer Faculty</div>
+        <div class="faculty-bio">Sudipta Sir makes technology accessible and practical. From absolute beginners to advanced learners, his structured and hands-on teaching style ensures every student walks away with real, usable computer skills.</div>
+        <div class="faculty-subjects">
+          <span class="fac-chip chip-purple">Computer</span>
+          <span class="fac-chip chip-purple">MS Office</span>
+          <span class="fac-chip chip-purple">Internet</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact-bg">
+  <div class="contact-inner">
+    <div class="section-label">Get in Touch</div>
+    <h2 class="section-title">Contact Us</h2>
+    <p class="section-desc">Reach out to enquire about admissions, batch timings, or any other information.</p>
+    <div class="divider"></div>
+
+    <div class="address-card">
+      <div class="address-icon">
+        <svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      </div>
+      <div class="address-text">
+        <div class="address-title">Our Location</div>
+        <div class="address-line">30 B/3 Sarat Ghosh Garden Road,</div>
+        <div class="address-line">Dhakuria, Kolkata</div>
+      </div>
+    </div>
+
+    <div class="phone-cards">
+      <a class="phone-card" href="tel:8334988024">
+        <div class="phone-icon">
+          <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        </div>
+        <div>
+            <div class="phone-sub">Call On:</div>
+            <div class="phone-num">83349 88024</div>
+          
+        </div>
+      </a>
+
+      <a class="phone-card" href="tel:9123755854">
+        <div class="phone-icon">
+          <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        </div>
+        <div>
+            <div class="phone-sub">Call On:</div>
+            <div class="phone-num">91237 55854</div>
+          
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationDelay = (i * 0.08) + 's';
+        entry.target.classList.add('fade-in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.course-card, .faculty-card').forEach(el => {
+    el.style.opacity = '0';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
